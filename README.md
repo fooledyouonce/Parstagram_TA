@@ -17,7 +17,6 @@ The following **required** functionality is completed:
 - [ ] User can view the last 20 posts submitted to "Instagram"
 - [ ] User can pull to refresh the last 20 posts submitted to "Instagram"
 - [ ] User can tap a post to go to a Post Details activity, which includes timestamp and caption.
-- [ ] User sees app icon in home screen
 
 The following **stretch** features are implemented:
 
