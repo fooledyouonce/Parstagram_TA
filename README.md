@@ -13,7 +13,7 @@ The following **required** functionality is completed:
 - [X] User can log in to his or her account
 - [X] The current signed in user is persisted across app restarts
 - [X] User can log out of his or her account
-- [ ] User can take a photo, add a caption, and post it to "Instagram"
+- [X] User can take a photo, add a caption, and post it to "Instagram"
 - [ ] User can view the last 20 posts submitted to "Instagram"
 - [ ] User can pull to refresh the last 20 posts submitted to "Instagram"
 - [ ] User can tap a post to go to a Post Details activity, which includes timestamp and caption.
