@@ -30,19 +30,21 @@
         android:layout_marginStart="135dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="135dp"
-        android:text="Capture" />
+        android:text="@string/capture" />
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="104dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomNavigation"
         android:layout_below="@+id/ivPostImage"
         android:layout_alignStart="@+id/btnCapture"
         android:layout_alignEnd="@+id/btnCapture"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="5dp"
-        android:text="Submit" />
+        android:layout_marginBottom="10dp"
+        android:text="@string/submit" />
 
     <ImageView
         android:id="@+id/ivPostImage"
@@ -56,4 +58,11 @@
         android:layout_marginEnd="-50dp"
         android:layout_marginBottom="50dp"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_bottom_navigation" />
 </RelativeLayout>

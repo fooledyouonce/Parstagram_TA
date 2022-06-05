@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+    * If there's not enough room in the action bar for the action item, the menu item appears in the overflow menu and only the title appears.
+    * Screen readers for sight-impaired users read the menu item's title.
+    * If the action item appears with only the icon, a user can long-press the item to reveal a tool-tip that displays the action item's title.
+    -->
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/instagram_home_outline_24"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction,MenuTitle" />
+    <item
+        android:id="@+id/action_compose"
+        android:icon="@drawable/instagram_new_post_outline_24"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/instagram_user_outline_24"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+</menu>
