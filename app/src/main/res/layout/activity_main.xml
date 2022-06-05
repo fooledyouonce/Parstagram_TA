@@ -17,7 +17,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="description"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnCapture"
