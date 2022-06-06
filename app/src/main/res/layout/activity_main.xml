@@ -6,58 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
-    <EditText
-        android:id="@+id/etDescription"
+    <FrameLayout
+        android:id="@+id/flContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="description"
-        android:inputType="textMultiLine"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/btnCapture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etDescription"
-        android:layout_alignStart="@+id/etDescription"
-        android:layout_alignEnd="@+id/etDescription"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="135dp"
-        android:text="@string/capture" />
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bottomNavigation"
-        android:layout_below="@+id/ivPostImage"
-        android:layout_alignStart="@+id/btnCapture"
-        android:layout_alignEnd="@+id/btnCapture"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/submit" />
-
-    <ImageView
-        android:id="@+id/ivPostImage"
-        android:layout_width="228dp"
-        android:layout_height="217dp"
-        android:layout_below="@+id/btnCapture"
-        android:layout_alignStart="@+id/btnCapture"
-        android:layout_alignEnd="@+id/btnCapture"
-        android:layout_marginStart="-50dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="-50dp"
-        android:layout_marginBottom="50dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
