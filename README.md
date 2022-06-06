@@ -15,7 +15,7 @@ The following **required** functionality is completed:
 - [X] User can log out of his or her account
 - [X] User can take a photo, add a caption, and post it to "Instagram"
 - [X] User can view the last 20 posts submitted to "Instagram"
-- [ ] User can pull to refresh the last 20 posts submitted to "Instagram"
+- [X] User can pull to refresh the last 20 posts submitted to "Instagram"
 - [ ] User can tap a post to go to a Post Details activity, which includes timestamp and caption.
 
 The following **stretch** features are implemented:
@@ -26,7 +26,7 @@ The following **stretch** features are implemented:
 - [X] User should switch between different tabs using fragments and a Bottom Navigation View.
   - [X] Feed Tab (to view all posts from all users)
   - [X] Capture Tab (to make a new post using the Camera and Photo Gallery)
-  - [ ] Profile Tab (to view only the current user's posts, in a grid)
+  - [X] Profile Tab (to view only the current user's posts, in a grid)
 - [ ] Show the username and creation time for each post
 - User Profiles:
   - [ ] Allow the logged in user to add a profile photo
