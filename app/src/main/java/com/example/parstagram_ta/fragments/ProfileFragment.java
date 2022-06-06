@@ -1,22 +1,36 @@
 package com.example.parstagram_ta.fragments;
 
-import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.util.Log;
 
-import androidx.fragment.app.Fragment;
+import com.example.parstagram_ta.Post;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import java.util.List;
 
-import com.example.parstagram_ta.R;
-
-public class ProfileFragment extends Fragment {
-    public ProfileFragment() {}
-
+public class ProfileFragment extends PostsFragment{
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+    protected void queryPosts() {
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.include(Post.KEY_USER);
+        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.setLimit(20);
+        query.addDescendingOrder(Post.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Post>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Unable to retrieve posts", e);
+                    return;
+                }
+                for (Post post : posts) { Log.i(TAG, "Post: " + post.getKeyDescription() + ", username: " + post.getKeyUser().getUsername()); }
+                allPosts.addAll(posts);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }
