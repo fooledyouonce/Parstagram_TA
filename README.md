@@ -23,9 +23,9 @@ The following **stretch** features are implemented:
 - [ ] Style the login page to look like the real Instagram login page.
 - [ ] Style the feed to look like the real Instagram feed.
 - [ ] User can load more posts once he or she reaches the bottom of the feed using endless scrolling.
-- [ ] User should switch between different tabs using fragments and a Bottom Navigation View.
+- [X] User should switch between different tabs using fragments and a Bottom Navigation View.
   - [ ] Feed Tab (to view all posts from all users)
-  - [ ] Capture Tab (to make a new post using the Camera and Photo Gallery)
+  - [X] Capture Tab (to make a new post using the Camera and Photo Gallery)
   - [ ] Profile Tab (to view only the current user's posts, in a grid)
 - [ ] Show the username and creation time for each post
 - User Profiles:
