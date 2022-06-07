@@ -83,15 +83,17 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         }
 
         public void bind(Post post) {
-            tvDescription.setText(post.getKeyDescription());
-            tvUsername.setText(post.getKeyUser().getUsername());
+            ParseFile pfp = post.getUser().getPfp();
+            if (pfp != null) { Glide.with(context).load(pfp.getUrl()).into(ivProfile); }
+            tvDescription.setText(post.getDescription());
+            tvUsername.setText(post.getUser().getUsername());
             tvLikes.setText(String.valueOf(post.getLikedBy().size()));
 
             if(post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
                 ibLike.setColorFilter(Color.RED);
             } else { ibLike.setColorFilter(Color.DKGRAY); }
 
-            ParseFile image = post.getKeyImage();
+            ParseFile image = post.getImage();
             if (image != null) { Glide.with(context).load(image.getUrl()).into(ivImage); }
 
             ivProfile.setOnClickListener(new View.OnClickListener() {

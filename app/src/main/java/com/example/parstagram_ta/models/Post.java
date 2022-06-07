@@ -17,27 +17,27 @@ public class Post extends ParseObject {
     public static final String KEY_CREATED_AT = "createdAt";
     public static final String KEY_LIKED_BY = "likedBy";
 
-    public String getKeyDescription() {
+    public String getDescription() {
        return getString(KEY_DESCRIPTION);
     }
 
-    public void setKeyDescription(String description) {
+    public void setDescription(String description) {
         put(KEY_DESCRIPTION, description);
     }
 
-    public ParseFile getKeyImage() {
+    public ParseFile getImage() {
         return getParseFile(KEY_IMAGE);
     }
 
-    public void setKeyImage(ParseFile parseFile) {
+    public void setImage(ParseFile parseFile) {
         put(KEY_IMAGE, parseFile);
     }
 
-    public ParseUser getKeyUser() {
-        return getParseUser(KEY_USER);
+    public User getUser() {
+        return (User) getParseUser(KEY_USER);
     }
 
-    public void setKeyUser(ParseUser user) {
+    public void setUser(ParseUser user) {
         put(KEY_USER, user);
     }
 
@@ -52,5 +52,4 @@ public class Post extends ParseObject {
     public void setLikedBy(List<String> likedBy) {
         put(KEY_LIKED_BY, likedBy);
     }
-
 }

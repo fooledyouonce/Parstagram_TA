@@ -21,7 +21,7 @@ The following **required** functionality is completed:
 The following **stretch** features are implemented:
 
 - [X] Style the login page to look like the real Instagram login page.
-- [ ] Style the feed to look like the real Instagram feed.
+- [X] Style the feed to look like the real Instagram feed.
 - [X] User can load more posts once he or she reaches the bottom of the feed using endless scrolling.
 - [X] User should switch between different tabs using fragments and a Bottom Navigation View.
   - [X] Feed Tab (to view all posts from all users)
@@ -30,7 +30,7 @@ The following **stretch** features are implemented:
 - [X] Show the username and creation time for each post
 - User Profiles:
   - [X] Allow the logged in user to add a profile photo
-  - [ ] Display the profile photo with each post
+  - [X] Display the profile photo with each post
   - [X] Tapping on a post's username or profile photo goes to that user's profile page
   - [X] User Profile shows posts in a grid
 - [ ] After the user submits a new post, show an indeterminate progress bar while the post is being uploaded to Parse

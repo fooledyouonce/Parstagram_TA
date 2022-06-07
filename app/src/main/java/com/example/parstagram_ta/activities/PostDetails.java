@@ -41,14 +41,14 @@ public class PostDetails extends AppCompatActivity {
 
         Post post = Parcels.unwrap(getIntent().getParcelableExtra("post"));
 
-        tvUser.setText(post.getKeyUser().getUsername());
+        tvUser.setText(post.getUser().getUsername());
         tvCreatedAt.setText(post.getCreatedAt().toString());
-        ParseFile image = post.getKeyImage();
+        ParseFile image = post.getImage();
         if (image != null) {
             Glide.with(this).load(image.getUrl()).into(ivPic);
         }
         tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));
-        tvCaption.setText(post.getKeyDescription());
+        tvCaption.setText(post.getDescription());
 
         if (post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) { ibPostLikes.setColorFilter(Color.RED);
         } else { ibPostLikes.setColorFilter(Color.DKGRAY); }

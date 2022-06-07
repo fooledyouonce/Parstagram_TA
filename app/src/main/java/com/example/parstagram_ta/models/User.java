@@ -9,7 +9,7 @@ import com.parse.ParseUser;
 public class User extends ParseUser {
     public static final String KEY_PFP = "pfp";
 
-    public ParseFile getKeyPfp() {
+    public ParseFile getPfp() {
         return getParseFile(KEY_PFP);
     }
 

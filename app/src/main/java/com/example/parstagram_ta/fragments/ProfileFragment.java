@@ -86,7 +86,7 @@ public class ProfileFragment extends PostsFragment {
                     Log.e(TAG, "Unable to retrieve posts", e);
                     return;
                 }
-                for (Post post : posts) { Log.i(TAG, "Post: " + post.getKeyDescription() + ", username: " + post.getKeyUser().getUsername()); }
+                for (Post post : posts) { Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername()); }
 
                 allPosts.addAll(posts);
                 swipeContainer.setRefreshing(false);

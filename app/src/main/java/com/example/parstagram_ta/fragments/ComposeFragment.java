@@ -137,9 +137,9 @@ public class ComposeFragment extends Fragment {
 
     private void savePost(String description, ParseUser currentUser, File photoFile) {
         Post post = new Post();
-        post.setKeyDescription(description);
-        post.setKeyImage(new ParseFile(photoFile));
-        post.setKeyUser(currentUser);
+        post.setDescription(description);
+        post.setImage(new ParseFile(photoFile));
+        post.setUser(currentUser);
         post.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
