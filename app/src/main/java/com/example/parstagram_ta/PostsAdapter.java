@@ -3,6 +3,7 @@ package com.example.parstagram_ta;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,6 +87,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUsername.setText(post.getKeyUser().getUsername());
             tvLikes.setText(String.valueOf(post.getLikedBy().size()));
 
+            if(post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
+                ibLike.setColorFilter(Color.RED);
+            } else {
+                ibLike.setColorFilter(Color.DKGRAY);
+            }
+
             ParseFile image = post.getKeyImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
@@ -117,11 +124,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     if(!likedBy.contains(ParseUser.getCurrentUser().getObjectId())) {
                         likedBy.add(ParseUser.getCurrentUser().getObjectId());
                         post.setLikedBy(likedBy);
+                        ibLike.setColorFilter(Color.RED);
                         Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         likedBy.remove(ParseUser.getCurrentUser().getObjectId());
                         post.setLikedBy(likedBy);
+                        ibLike.setColorFilter(Color.DKGRAY);
                         Toast.makeText(context, "Unliked!", Toast.LENGTH_SHORT).show();
                     }
                     post.saveInBackground();

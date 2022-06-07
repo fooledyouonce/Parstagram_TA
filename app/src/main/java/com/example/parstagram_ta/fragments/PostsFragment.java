@@ -24,6 +24,7 @@ import com.example.parstagram_ta.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +52,18 @@ public class PostsFragment extends Fragment {
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(getContext(), allPosts);
         rvPosts.setAdapter(adapter);
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        queryPosts();
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        scrollListener = new EndlessRecyclerViewScrollListener(llm) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadMoreData();
+            }
+        };
+        rvPosts.setLayoutManager(llm);
+        rvPosts.addOnScrollListener(scrollListener);
+
+        queryPosts(0);
 
         //SwipeRefresh
         swipeContainer = view.findViewById(R.id.swipeContainer);
@@ -66,28 +76,25 @@ public class PostsFragment extends Fragment {
             public void onRefresh() {
                 Log.i(TAG,"fetching new data");
                 adapter.clear();
-                queryPosts();
+                allPosts.clear();
+                queryPosts(0);
             }
         });
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-
-        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                loadMoreData();
-            }
-        };
     }
 
     private void loadMoreData() {
         Log.i(TAG, "fetching");
+        queryPosts(allPosts.size());
     }
 
-    protected void queryPosts() {
+    protected void queryPosts(int skipAmount) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         query.setLimit(20);
+        query.setSkip(skipAmount);
+       // if(userToFilter != null) {
+       //     query.whereEqualTo(Post.KEY_USER, userToFilter);
+       // }
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Post>() {
             @SuppressLint("NotifyDataSetChanged")

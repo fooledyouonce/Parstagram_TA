@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ProfileFragment extends PostsFragment {
 
-    //TODO: Issues with GridLayout and EndlessScroll
+    //TODO: copy posts
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -37,7 +37,6 @@ public class ProfileFragment extends PostsFragment {
         queryPosts();
     }
 
-    @Override
     protected void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
