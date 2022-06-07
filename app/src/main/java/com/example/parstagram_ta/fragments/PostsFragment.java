@@ -35,6 +35,7 @@ public class PostsFragment extends Fragment {
     protected List<Post> allPosts;
     SwipeRefreshLayout swipeContainer;
     EndlessRecyclerViewScrollListener scrollListener;
+    //getsrrg current user...
 
     public PostsFragment() {}
 
@@ -81,7 +82,7 @@ public class PostsFragment extends Fragment {
     }
 
     private void loadMoreData() {
-        Toast.makeText(getContext(), "loadMoreData called", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "fetching");
     }
 
     protected void queryPosts() {

@@ -14,6 +14,8 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_AT = "createdAt";
+    public static final String KEY_LIKE = "like";
+    public static final String KEY_COUNT = "likeCount";
 
     public String getKeyDescription() {
        return getString(KEY_DESCRIPTION);
@@ -37,5 +39,21 @@ public class Post extends ParseObject {
 
     public void setKeyUser(ParseUser user) {
         put(KEY_USER, user);
+    }
+
+    public boolean getLike() {
+        return getBoolean(KEY_LIKE);
+    }
+
+    public void setLike(Boolean like) {
+        put(KEY_LIKE, like);
+    }
+
+    public int getLikeCount() {
+        return getInt(KEY_COUNT);
+    }
+
+    public void setLikeCount(int like) {
+        put(KEY_COUNT, like);
     }
 }

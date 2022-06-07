@@ -3,6 +3,7 @@ package com.example.parstagram_ta;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,18 +13,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.parstagram_ta.activities.PostDetails;
+import com.example.parstagram_ta.fragments.ProfileFragment;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
+    private static final String TAG = "PostsAdapter";
     private Context context;
     private List<Post> posts;
 
@@ -63,6 +69,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvDescription;
         private ImageButton ibLike;
         private ImageButton ibComment;
+        private int likeCount = 0;
+        private List<ParseUser> likedBy;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +89,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
 
+            tvUsername.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //go to profile fragment
+                    Fragment fragment = null;
+                    fragment = new ProfileFragment();
+                }
+                //fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+            });
+
             ivImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -90,10 +108,29 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 }
             });
 
+            List<ParseUser>likedBy = new ArrayList<>();
+
             ibLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "Like button clicked!", Toast.LENGTH_SHORT).show();
+                    if (!post.getLike()) {
+                        if(!likedBy.contains(ParseUser.getCurrentUser())) {
+                            post.setLike(true);
+                            post.setLikeCount(post.getLikeCount() + 1);
+                            likedBy.add(ParseUser.getCurrentUser());
+                            Log.i(TAG, "likes: " + post.getLikeCount());
+                            Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else if (post.getLike()) {
+                        if(likedBy.contains(ParseUser.getCurrentUser())) {
+                            post.setLike(false);
+                            post.setLikeCount(post.getLikeCount() - 1);
+                            likedBy.remove(ParseUser.getCurrentUser());
+                            Log.i(TAG, "likes: " + post.getLikeCount());
+                            Toast.makeText(context, "Unliked!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    post.saveInBackground();
                 }
             });
 
