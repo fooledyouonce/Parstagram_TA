@@ -26,6 +26,8 @@ import java.util.List;
 
 public class ProfileFragment extends PostsFragment {
 
+    //TODO: Fixed username issue, endless scrolling is infinite
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,8 +32,8 @@ import java.util.List;
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     private static final String TAG = "PostsAdapter";
-    private Context context;
-    private List<Post> posts;
+    private final Context context;
+    private final List<Post> posts;
 
     public PostsAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -65,12 +66,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvUsername;
-        private TextView tvLikes;
-        private ImageView ivImage;
-        private TextView tvDescription;
-        private ImageButton ibLike;
-        private ImageButton ibComment;
+        private final TextView tvUsername;
+        private final TextView tvLikes;
+        private final ImageView ivImage;
+        private final TextView tvDescription;
+        private final ImageButton ibLike;
+        private final ImageButton ibComment;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -102,10 +103,10 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 @Override
                 public void onClick(View view) {
                     //go to profile fragment
-                    Fragment fragment = null;
-                    fragment = new ProfileFragment();
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    Fragment profileFragment = new ProfileFragment();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, profileFragment).addToBackStack(null).commit();
                 }
-                //fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
             });
 
             ivImage.setOnClickListener(new View.OnClickListener() {
