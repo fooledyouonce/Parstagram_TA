@@ -53,14 +53,14 @@ public class PostsFragment extends Fragment {
         adapter = new PostsAdapter(getContext(), allPosts);
         rvPosts.setAdapter(adapter);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        scrollListener = new EndlessRecyclerViewScrollListener(llm) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 loadMoreData();
             }
         };
-        rvPosts.setLayoutManager(llm);
+        rvPosts.setLayoutManager(linearLayoutManager);
         rvPosts.addOnScrollListener(scrollListener);
 
         queryPosts(0);
@@ -92,9 +92,6 @@ public class PostsFragment extends Fragment {
         query.include(Post.KEY_USER);
         query.setLimit(20);
         query.setSkip(skipAmount);
-       // if(userToFilter != null) {
-       //     query.whereEqualTo(Post.KEY_USER, userToFilter);
-       // }
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Post>() {
             @SuppressLint("NotifyDataSetChanged")
