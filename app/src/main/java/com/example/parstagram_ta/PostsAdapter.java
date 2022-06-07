@@ -104,7 +104,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 public void onClick(View view) {
                     //go to profile fragment
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    Fragment profileFragment = new ProfileFragment();
+                    Fragment profileFragment = new ProfileFragment(post.getParseUser(Post.KEY_USER));
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, profileFragment).addToBackStack(null).commit();
                 }
             });

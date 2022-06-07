@@ -27,6 +27,11 @@ import java.util.List;
 public class ProfileFragment extends PostsFragment {
 
     //TODO: Fixed username issue, endless scrolling is infinite
+    ParseUser userToFilterBy;
+
+    public ProfileFragment(ParseUser userToFilterBy) {
+        this.userToFilterBy = userToFilterBy;
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -42,7 +47,7 @@ public class ProfileFragment extends PostsFragment {
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                loadMoreData();
+                queryPosts(allPosts.size());
             }
         };
         rvPosts.setLayoutManager(linearLayoutManager);
@@ -67,17 +72,13 @@ public class ProfileFragment extends PostsFragment {
         });
     }
 
-    private void loadMoreData() {
-        Log.i(TAG, "fetching");
-        queryPosts(allPosts.size());
-    }
-
     @Override
     protected void queryPosts(int skipAmount) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
-        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Post.KEY_USER, userToFilterBy);
         query.setLimit(20);
+        query.setSkip(skipAmount);
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Post>() {
             @SuppressLint("NotifyDataSetChanged")
