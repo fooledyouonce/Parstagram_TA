@@ -29,7 +29,7 @@ The following **stretch** features are implemented:
   - [X] Profile Tab (to view only the current user's posts, in a grid)
 - [X] Show the username and creation time for each post
 - User Profiles:
-  - [ ] Allow the logged in user to add a profile photo
+  - [X] Allow the logged in user to add a profile photo
   - [ ] Display the profile photo with each post
   - [X] Tapping on a post's username or profile photo goes to that user's profile page
   - [X] User Profile shows posts in a grid

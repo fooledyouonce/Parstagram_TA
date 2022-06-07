@@ -56,8 +56,8 @@ public class UploadActivity extends AppCompatActivity {
         btnSubmitPfp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(currentUser, photoFile);
+                User currentUser = (User) ParseUser.getCurrentUser();
+                savePfp(currentUser, photoFile);
                 Intent i = new Intent(UploadActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
@@ -117,10 +117,9 @@ public class UploadActivity extends AppCompatActivity {
         return new File(mediaStorageDir.getPath() + File.separator + photoFileName);
     }
 
-    private void savePost(ParseUser currentUser, File photoFile) {
-        User pfp = new User();
-        pfp.setKeyPfp(new ParseFile(photoFile));
-        pfp.saveInBackground(new SaveCallback() {
+    private void savePfp(User currentUser, File photoFile) {
+        currentUser.setPfp(new ParseFile(photoFile));
+        currentUser.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
