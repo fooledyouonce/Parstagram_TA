@@ -5,7 +5,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
@@ -14,8 +15,7 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_AT = "createdAt";
-    public static final String KEY_LIKE = "like";
-    public static final String KEY_COUNT = "likeCount";
+    public static final String KEY_LIKED_BY = "likedBy";
 
     public String getKeyDescription() {
        return getString(KEY_DESCRIPTION);
@@ -41,19 +41,16 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 
-    public boolean getLike() {
-        return getBoolean(KEY_LIKE);
+    public List<String> getLikedBy() {
+        List<String> likedBy = getList(KEY_LIKED_BY);
+        if(likedBy == null) {
+            likedBy = new ArrayList<>();
+        }
+        return likedBy;
     }
 
-    public void setLike(Boolean like) {
-        put(KEY_LIKE, like);
+    public void setLikedBy(List<String> likedBy) {
+        put(KEY_LIKED_BY, likedBy);
     }
 
-    public int getLikeCount() {
-        return getInt(KEY_COUNT);
-    }
-
-    public void setLikeCount(int like) {
-        put(KEY_COUNT, like);
-    }
 }

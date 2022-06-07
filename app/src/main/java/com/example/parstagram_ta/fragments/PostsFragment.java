@@ -35,7 +35,6 @@ public class PostsFragment extends Fragment {
     protected List<Post> allPosts;
     SwipeRefreshLayout swipeContainer;
     EndlessRecyclerViewScrollListener scrollListener;
-    //getsrrg current user...
 
     public PostsFragment() {}
 

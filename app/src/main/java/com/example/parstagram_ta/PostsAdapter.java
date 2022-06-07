@@ -65,16 +65,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvUsername;
+        private TextView tvLikes;
         private ImageView ivImage;
         private TextView tvDescription;
         private ImageButton ibLike;
         private ImageButton ibComment;
-        private int likeCount = 0;
-        private List<ParseUser> likedBy;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUsername = itemView.findViewById(R.id.tvUsername);
+            tvLikes = itemView.findViewById(R.id.tvLikes);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ibLike = itemView.findViewById(R.id.ibLike);
@@ -84,6 +84,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         public void bind(Post post) {
             tvDescription.setText(post.getKeyDescription());
             tvUsername.setText(post.getKeyUser().getUsername());
+            tvLikes.setText(String.valueOf(post.getLikedBy().size()));
+
             ParseFile image = post.getKeyImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
@@ -108,29 +110,22 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 }
             });
 
-            List<ParseUser>likedBy = new ArrayList<>();
-
             ibLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!post.getLike()) {
-                        if(!likedBy.contains(ParseUser.getCurrentUser())) {
-                            post.setLike(true);
-                            post.setLikeCount(post.getLikeCount() + 1);
-                            likedBy.add(ParseUser.getCurrentUser());
-                            Log.i(TAG, "likes: " + post.getLikeCount());
-                            Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
-                        }
-                    } else if (post.getLike()) {
-                        if(likedBy.contains(ParseUser.getCurrentUser())) {
-                            post.setLike(false);
-                            post.setLikeCount(post.getLikeCount() - 1);
-                            likedBy.remove(ParseUser.getCurrentUser());
-                            Log.i(TAG, "likes: " + post.getLikeCount());
-                            Toast.makeText(context, "Unliked!", Toast.LENGTH_SHORT).show();
-                        }
+                    List<String> likedBy = post.getLikedBy();
+                    if(!likedBy.contains(ParseUser.getCurrentUser().getObjectId())) {
+                        likedBy.add(ParseUser.getCurrentUser().getObjectId());
+                        post.setLikedBy(likedBy);
+                        Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        likedBy.remove(ParseUser.getCurrentUser().getObjectId());
+                        post.setLikedBy(likedBy);
+                        Toast.makeText(context, "Unliked!", Toast.LENGTH_SHORT).show();
                     }
                     post.saveInBackground();
+                    tvLikes.setText(String.valueOf(post.getLikedBy().size()));
                 }
             });
 
