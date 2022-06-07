@@ -1,6 +1,7 @@
 package com.example.parstagram_ta.fragments;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.parstagram_ta.EndlessRecyclerViewScrollListener;
 import com.example.parstagram_ta.Post;
 import com.example.parstagram_ta.PostsAdapter;
 import com.example.parstagram_ta.R;
@@ -28,9 +31,10 @@ import java.util.List;
 public class PostsFragment extends Fragment {
     public static final String TAG = "PostsFragment";
     protected RecyclerView rvPosts;
-    SwipeRefreshLayout swipeContainer;
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
+    SwipeRefreshLayout swipeContainer;
+    EndlessRecyclerViewScrollListener scrollListener;
 
     public PostsFragment() {}
 
@@ -48,6 +52,7 @@ public class PostsFragment extends Fragment {
         adapter = new PostsAdapter(getContext(), allPosts);
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+
         queryPosts();
 
         //SwipeRefresh
@@ -60,9 +65,23 @@ public class PostsFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Log.i(TAG,"fetching new data");
+                adapter.clear();
                 queryPosts();
             }
         });
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadMoreData();
+            }
+        };
+    }
+
+    private void loadMoreData() {
+        Toast.makeText(getContext(), "loadMoreData called", Toast.LENGTH_SHORT).show();
     }
 
     protected void queryPosts() {

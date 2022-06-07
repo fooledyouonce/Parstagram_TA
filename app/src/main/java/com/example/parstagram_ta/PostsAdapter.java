@@ -1,6 +1,8 @@
 package com.example.parstagram_ta;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.parstagram_ta.activities.PostDetails;
 import com.parse.ParseFile;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -45,6 +50,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return posts.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvUsername;
@@ -69,6 +80,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
+
+            ivImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context, PostDetails.class);
+                    i.putExtra("post", Parcels.wrap(post));
+                    context.startActivity(i);
+                }
+            });
 
             ibLike.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -16,11 +16,11 @@ The following **required** functionality is completed:
 - [X] User can take a photo, add a caption, and post it to "Instagram"
 - [X] User can view the last 20 posts submitted to "Instagram"
 - [X] User can pull to refresh the last 20 posts submitted to "Instagram"
-- [ ] User can tap a post to go to a Post Details activity, which includes timestamp and caption.
+- [X] User can tap a post to go to a Post Details activity, which includes timestamp and caption.
 
 The following **stretch** features are implemented:
 
-- [ ] Style the login page to look like the real Instagram login page.
+- [X] Style the login page to look like the real Instagram login page.
 - [ ] Style the feed to look like the real Instagram feed.
 - [ ] User can load more posts once he or she reaches the bottom of the feed using endless scrolling.
 - [X] User should switch between different tabs using fragments and a Bottom Navigation View.

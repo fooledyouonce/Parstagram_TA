@@ -23,6 +23,8 @@ import java.util.List;
 
 public class ProfileFragment extends PostsFragment {
 
+    //TODO: Issues with GridLayout and EndlessScroll
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -51,7 +53,9 @@ public class ProfileFragment extends PostsFragment {
                     return;
                 }
                 for (Post post : posts) { Log.i(TAG, "Post: " + post.getKeyDescription() + ", username: " + post.getKeyUser().getUsername()); }
+
                 allPosts.addAll(posts);
+                swipeContainer.setRefreshing(false);
                 adapter.notifyDataSetChanged();
             }
         });
