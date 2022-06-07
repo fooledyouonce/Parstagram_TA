@@ -24,19 +24,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.parstagram_ta.Post;
+import com.example.parstagram_ta.models.Post;
 import com.example.parstagram_ta.R;
-import com.example.parstagram_ta.activities.MainActivity;
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.List;
-import java.util.Objects;
 
 public class ComposeFragment extends Fragment {
     public static final String TAG = "ComposeFragment";
@@ -61,9 +56,9 @@ public class ComposeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         etDescription = view.findViewById(R.id.etDescription);
-        btnCapture = view.findViewById(R.id.btnCapture);
-        btnSubmit = view.findViewById(R.id.btnSubmit);
-        ivPostImage = view.findViewById(R.id.ivPostImage);
+        btnCapture = view.findViewById(R.id.btnTakePfp);
+        btnSubmit = view.findViewById(R.id.btnSubmitPfp);
+        ivPostImage = view.findViewById(R.id.ivPfp);
 
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override

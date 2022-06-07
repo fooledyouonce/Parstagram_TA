@@ -1,49 +1,24 @@
 package com.example.parstagram_ta.activities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.text.Html;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.parstagram_ta.Post;
 import com.example.parstagram_ta.R;
 import com.example.parstagram_ta.fragments.ComposeFragment;
 import com.example.parstagram_ta.fragments.PostsFragment;
 import com.example.parstagram_ta.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.io.File;
-import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -100,8 +75,16 @@ public class MainActivity extends AppCompatActivity {
             ParseUser currentUser = ParseUser.getCurrentUser();
             goLoginActivity();
             return true;
+        } else if (item.getItemId() == R.id.upload) {
+            goUploadActivity();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goUploadActivity() {
+        Intent i = new Intent(this, UploadActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void goLoginActivity() {
@@ -110,7 +93,3 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 }
-
-/*
-* TODO: SELECT FROM Like WHERE postId = SAME
-*/

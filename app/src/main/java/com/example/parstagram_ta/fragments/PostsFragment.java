@@ -1,7 +1,6 @@
 package com.example.parstagram_ta.fragments;
 
 import android.annotation.SuppressLint;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,16 +14,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.parstagram_ta.EndlessRecyclerViewScrollListener;
-import com.example.parstagram_ta.Post;
+import com.example.parstagram_ta.models.Post;
 import com.example.parstagram_ta.PostsAdapter;
 import com.example.parstagram_ta.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;

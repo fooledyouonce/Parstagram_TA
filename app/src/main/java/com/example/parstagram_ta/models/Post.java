@@ -1,4 +1,4 @@
-package com.example.parstagram_ta;
+package com.example.parstagram_ta.models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;

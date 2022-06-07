@@ -8,17 +8,15 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.parstagram_ta.Post;
+import com.example.parstagram_ta.models.Post;
 import com.example.parstagram_ta.R;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
-import java.util.Date;
 import java.util.List;
 
 public class PostDetails extends AppCompatActivity {

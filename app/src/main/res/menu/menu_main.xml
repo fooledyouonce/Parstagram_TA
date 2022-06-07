@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/upload"
+        android:icon="@drawable/instagram_user_filled_24"
+        android:title="uploadPFP"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/Logout"
         android:icon="@drawable/ic_baseline_login_24"
         android:title="Logout"

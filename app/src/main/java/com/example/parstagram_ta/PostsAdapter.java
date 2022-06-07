@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.parstagram_ta.activities.PostDetails;
 import com.example.parstagram_ta.fragments.ProfileFragment;
+import com.example.parstagram_ta.models.Post;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
@@ -64,6 +63,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        private final ImageView ivProfile;
         private final TextView tvUsername;
         private final TextView tvLikes;
         private final ImageView ivImage;
@@ -73,6 +73,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivProfile = itemView.findViewById(R.id.ivProfile);
             tvUsername = itemView.findViewById(R.id.tvUsername);
             tvLikes = itemView.findViewById(R.id.tvLikes);
             ivImage = itemView.findViewById(R.id.ivImage);
@@ -92,6 +93,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
             ParseFile image = post.getKeyImage();
             if (image != null) { Glide.with(context).load(image.getUrl()).into(ivImage); }
+
+            ivProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //go to profile fragment
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    Fragment profileFragment = new ProfileFragment(post.getParseUser(Post.KEY_USER));
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, profileFragment).addToBackStack(null).commit();
+                }
+            });
 
             tvUsername.setOnClickListener(new View.OnClickListener() {
                 @Override

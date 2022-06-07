@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.parstagram_ta.EndlessRecyclerViewScrollListener;
-import com.example.parstagram_ta.Post;
+import com.example.parstagram_ta.models.Post;
 import com.example.parstagram_ta.PostsAdapter;
 import com.example.parstagram_ta.R;
 import com.parse.FindCallback;

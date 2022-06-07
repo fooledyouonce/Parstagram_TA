@@ -21,7 +21,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/btnCapture"
+        android:id="@+id/btnTakePfp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etDescription"
@@ -33,12 +33,12 @@
         android:text="@string/capture" />
 
     <Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/btnSubmitPfp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivPostImage"
-        android:layout_alignStart="@+id/btnCapture"
-        android:layout_alignEnd="@+id/btnCapture"
+        android:layout_below="@+id/ivPfp"
+        android:layout_alignStart="@+id/btnTakePfp"
+        android:layout_alignEnd="@+id/btnTakePfp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="5dp"
@@ -46,12 +46,12 @@
         android:text="@string/submit" />
 
     <ImageView
-        android:id="@+id/ivPostImage"
+        android:id="@+id/ivPfp"
         android:layout_width="228dp"
         android:layout_height="217dp"
-        android:layout_below="@+id/btnCapture"
-        android:layout_alignStart="@+id/btnCapture"
-        android:layout_alignEnd="@+id/btnCapture"
+        android:layout_below="@+id/btnTakePfp"
+        android:layout_alignStart="@+id/btnTakePfp"
+        android:layout_alignEnd="@+id/btnTakePfp"
         android:layout_marginStart="-50dp"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="-50dp"
