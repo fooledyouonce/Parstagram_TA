@@ -36,6 +36,7 @@ import com.parse.SaveCallback;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 public class ComposeFragment extends Fragment {
     public static final String TAG = "ComposeFragment";
@@ -53,7 +54,6 @@ public class ComposeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_compose, container, false);
     }
 
@@ -77,7 +77,7 @@ public class ComposeFragment extends Fragment {
             public void onClick(View v) {
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()) {
-                    Toast.makeText(getContext(), "Description cannot be empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Caption cannot be empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (photoFile == null || ivPostImage.getDrawable() == null) {
@@ -99,12 +99,12 @@ public class ComposeFragment extends Fragment {
         //wrap File object into a content provider
         //required for API >= 24
         //see https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(requireContext(), "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         //if you call startActivityForResult() using an intent that no app can handle, your app will crash.
         //so as long as the result is not null, it's safe to use the intent.
-        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+        if (intent.resolveActivity(requireContext().getPackageManager()) != null) {
             //start the image capture intent to take photo
             //noinspection deprecation
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -123,7 +123,7 @@ public class ComposeFragment extends Fragment {
                 //load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
             } else { // Result was a failure
-                Toast.makeText(getContext(), "Unable to take picture!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error taking picture!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -132,12 +132,10 @@ public class ComposeFragment extends Fragment {
         //get safe storage directory for photos
         //use `getExternalFilesDir` on Context to access package-specific directories.
         //this way, we don't need to request external read/write runtime permissions.
-        File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
+        File mediaStorageDir = new File(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
         //create the storage directory if it does not exist
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
-            Log.d(TAG, "Failed to create directory");
-        }
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) { Log.d(TAG, "Failed to create directory"); }
         //return the file target for the photo based on filename
         return new File(mediaStorageDir.getPath() + File.separator + photoFileName);
     }

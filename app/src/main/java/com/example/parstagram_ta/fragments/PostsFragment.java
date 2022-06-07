@@ -56,9 +56,7 @@ public class PostsFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                loadMoreData();
-            }
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) { loadMoreData(); }
         };
         rvPosts.setLayoutManager(linearLayoutManager);
         rvPosts.addOnScrollListener(scrollListener);

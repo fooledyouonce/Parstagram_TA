@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
-
     private static final String TAG = "PostsAdapter";
     private final Context context;
     private final List<Post> posts;
@@ -65,7 +64,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
         private final TextView tvUsername;
         private final TextView tvLikes;
         private final ImageView ivImage;
@@ -90,14 +88,10 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
             if(post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
                 ibLike.setColorFilter(Color.RED);
-            } else {
-                ibLike.setColorFilter(Color.DKGRAY);
-            }
+            } else { ibLike.setColorFilter(Color.DKGRAY); }
 
             ParseFile image = post.getKeyImage();
-            if (image != null) {
-                Glide.with(context).load(image.getUrl()).into(ivImage);
-            }
+            if (image != null) { Glide.with(context).load(image.getUrl()).into(ivImage); }
 
             tvUsername.setOnClickListener(new View.OnClickListener() {
                 @Override

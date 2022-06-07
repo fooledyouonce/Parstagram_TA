@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.List;
 
 public class PostDetails extends AppCompatActivity {
-
     private TextView tvUser;
     private TextView tvCreatedAt;
     private ImageView ivPic;
@@ -42,7 +41,7 @@ public class PostDetails extends AppCompatActivity {
         ibPostLikes = findViewById(R.id.ibPostLikes);
         tvCaption = findViewById(R.id.tvCaption);
 
-        Post post = (Post) Parcels.unwrap(getIntent().getParcelableExtra("post"));
+        Post post = Parcels.unwrap(getIntent().getParcelableExtra("post"));
 
         tvUser.setText(post.getKeyUser().getUsername());
         tvCreatedAt.setText(post.getCreatedAt().toString());
@@ -53,11 +52,8 @@ public class PostDetails extends AppCompatActivity {
         tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));
         tvCaption.setText(post.getKeyDescription());
 
-        if(post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
-            ibPostLikes.setColorFilter(Color.RED);
-        } else {
-            ibPostLikes.setColorFilter(Color.DKGRAY);
-        }
+        if (post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) { ibPostLikes.setColorFilter(Color.RED);
+        } else { ibPostLikes.setColorFilter(Color.DKGRAY); }
 
         ibPostLikes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,13 +63,13 @@ public class PostDetails extends AppCompatActivity {
                     likedBy.add(ParseUser.getCurrentUser().getObjectId());
                     post.setLikedBy(likedBy);
                     ibPostLikes.setColorFilter(Color.RED);
-                    Toast.makeText(PostDetails.this, "Liked!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(PostDetails.this, "Liked!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     likedBy.remove(ParseUser.getCurrentUser().getObjectId());
                     post.setLikedBy(likedBy);
                     ibPostLikes.setColorFilter(Color.DKGRAY);
-                    Toast.makeText(PostDetails.this, "Unliked!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(PostDetails.this, "Unliked!", Toast.LENGTH_SHORT).show();
                 }
                 post.saveInBackground();
                 tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));

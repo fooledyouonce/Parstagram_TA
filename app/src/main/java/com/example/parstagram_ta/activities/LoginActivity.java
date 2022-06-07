@@ -18,7 +18,6 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
-
     public static final String TAG = "LoginActivity";
     private EditText etUsername;
     private EditText etPassword;
@@ -55,11 +54,11 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
                     Log.e(TAG, "Issue with login", e);
-                    Toast.makeText(LoginActivity.this, "Check credentials!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Please check your credentials!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 goMainActivity();
-                Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             }
         });
     }
