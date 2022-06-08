@@ -43,6 +43,10 @@ public class PostDetailsActivity extends AppCompatActivity {
     private List<Comment> allComments;
     //Comment postToFilterBy;
 
+    //TODO: if user == getcurrentuser then comment.deleteinbg
+    //rmv item from array
+    //notify item rrmv
+
     //PostDetailsActivity (Comment postToFilterBy) { this.postToFilterBy = postToFilterBy; }
 
     @SuppressLint("SetTextI18n")
