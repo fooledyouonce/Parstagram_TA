@@ -3,7 +3,6 @@ package com.example.parstagram_ta.activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,14 +17,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.parstagram_ta.R;
 import com.example.parstagram_ta.models.User;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
 import java.io.File;
 
 public class UploadActivity extends AppCompatActivity {
@@ -110,9 +107,7 @@ public class UploadActivity extends AppCompatActivity {
         File mediaStorageDir = new File(this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
         //create the storage directory if it does not exist
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
-            Log.d(TAG, "Failed to create directory");
-        }
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) { Log.d(TAG, "Failed to create directory"); }
         //return the file target for the photo based on filename
         return new File(mediaStorageDir.getPath() + File.separator + photoFileName);
     }
@@ -150,6 +145,6 @@ public class UploadActivity extends AppCompatActivity {
     private void goTimelineActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
-        finish(); //makes main activity the "default" page, closes login activity for access
+        finish(); //makes main activity the "default" page, closes upload activity for access
     }
 }

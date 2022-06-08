@@ -7,7 +7,6 @@ import com.parse.ParseUser;
 
 @ParseClassName("Comment")
 public class Comment extends ParseObject {
-    //body, post, author
     public static final String KEY_AUTHOR = "author";
     public static final String KEY_POST = "post";
     public static final String KEY_BODY = "body";

@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,10 +14,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.parstagram_ta.adapters.CommentsAdapter;
-import com.example.parstagram_ta.adapters.PostsAdapter;
 import com.example.parstagram_ta.models.Comment;
 import com.example.parstagram_ta.models.Post;
 import com.example.parstagram_ta.R;
@@ -27,11 +24,10 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PostDetailsActivity extends AppCompatActivity {
     private static final String TAG = "PostDetailsActivity";
@@ -70,7 +66,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         queryComments();
 
         Post post = Parcels.unwrap(getIntent().getParcelableExtra("post"));
-
         tvUser.setText(post.getUser().getUsername());
         tvCreatedAt.setText(post.getCreatedAt().toString());
         ParseFile image = post.getImage();
@@ -108,18 +103,20 @@ public class PostDetailsActivity extends AppCompatActivity {
                 Toast.makeText(PostDetailsActivity.this, "Comment button clicked!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(PostDetailsActivity.this, CommentActivity.class);
                 i.putExtra("post_to_comment_on", Parcels.wrap(post));
-                PostDetailsActivity.this.startActivityForResult(i, 534);
+                //noinspection deprecation
+                PostDetailsActivity.this.startActivityForResult(i, 109);
             }
         });
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             //subclass of Parcelable!
-            Comment newComment = data.getParcelableExtra("new_comment");
+            Comment newComment = Objects.requireNonNull(data).getParcelableExtra("new_comment");
             allComments.add(0, newComment);
             adapter.notifyDataSetChanged();
         }

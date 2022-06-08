@@ -11,12 +11,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.parstagram_ta.R;
 import com.example.parstagram_ta.activities.CommentActivity;
@@ -25,9 +23,7 @@ import com.example.parstagram_ta.fragments.ProfileFragment;
 import com.example.parstagram_ta.models.Post;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
-
 import org.parceler.Parcels;
-
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
@@ -89,13 +85,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ParseFile pfp = post.getUser().getPfp();
             if (pfp != null) { Glide.with(context)
                     .load(pfp.getUrl())
-                    //.transform(new RoundedCorners(200))
                     .into(ivProfile); }
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
-            if ((post.getLikedBy().size() == 1)) {
-                tvLikes.setText(String.valueOf(post.getLikedBy().size()) + " like");
-            }
             tvLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
 
             if(post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
@@ -118,7 +110,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUsername.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //go to profile fragment
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment profileFragment = new ProfileFragment(post.getParseUser(Post.KEY_USER));
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, profileFragment).addToBackStack(null).commit();
@@ -142,18 +133,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         likedBy.add(ParseUser.getCurrentUser().getObjectId());
                         post.setLikedBy(likedBy);
                         ibLike.setColorFilter(Color.RED);
-                        //Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         likedBy.remove(ParseUser.getCurrentUser().getObjectId());
                         post.setLikedBy(likedBy);
                         ibLike.setColorFilter(Color.DKGRAY);
-                        //Toast.makeText(context, "Unliked!", Toast.LENGTH_SHORT).show();
                     }
                     post.saveInBackground();
-                    if ((post.getLikedBy().size() == 1)) {
-                        tvLikes.setText(String.valueOf(post.getLikedBy().size()) + " like");
-                    }
                     tvLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
                 }
             });
@@ -161,7 +147,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ibComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "Comment button clicked!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, CommentActivity.class);
                     i.putExtra("post_to_comment_on", Parcels.wrap(post));
                     context.startActivity(i);

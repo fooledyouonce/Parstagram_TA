@@ -4,25 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.example.parstagram_ta.R;
 import com.example.parstagram_ta.fragments.ComposeFragment;
 import com.example.parstagram_ta.fragments.PostsFragment;
 import com.example.parstagram_ta.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
-
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     private BottomNavigationView bottomNavigationView;
     final FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -58,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        //set default selection
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
@@ -75,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
             ParseUser currentUser = ParseUser.getCurrentUser();
             goLoginActivity();
             return true;
-        } else if (item.getItemId() == R.id.upload) {
-            goUploadActivity();
-        }
+        } else if (item.getItemId() == R.id.upload) { goUploadActivity(); }
         return super.onOptionsItemSelected(item);
     }
 
