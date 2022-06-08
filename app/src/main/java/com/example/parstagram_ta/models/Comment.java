@@ -23,9 +23,9 @@ public class Comment extends ParseObject {
 
     public Post getPost() { return (Post) getParseObject(KEY_POST); }
 
-    public void getPost(Post post) { put(KEY_POST, post); }
+    public void setPost(Post post) { put(KEY_POST, post); }
 
     public String getBody() { return getString(KEY_BODY); }
 
-    public void getBody(String body) { put(KEY_BODY, body); }
+    public void setBody(String body) { put(KEY_BODY, body); }
 }

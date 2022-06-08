@@ -163,6 +163,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 public void onClick(View view) {
                     Toast.makeText(context, "Comment button clicked!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, CommentActivity.class);
+                    i.putExtra("post_to_comment_on", Parcels.wrap(post));
                     context.startActivity(i);
                 }
             });
