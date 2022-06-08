@@ -29,6 +29,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//TODO: if (user == getCurrentUser) {
+//          comment.deleteInBackground
+//          array.remove(comment)
+//          adapter.notifyItemRemoved
+//      }
+
+//TODO: Filter comments by post
+
 public class PostDetailsActivity extends AppCompatActivity {
     private static final String TAG = "PostDetailsActivity";
     private TextView tvUser;
@@ -42,10 +50,6 @@ public class PostDetailsActivity extends AppCompatActivity {
     private CommentsAdapter adapter;
     private List<Comment> allComments;
     //Comment postToFilterBy;
-
-    //TODO: if user == getcurrentuser then comment.deleteinbg
-    //rmv item from array
-    //notify item rrmv
 
     //PostDetailsActivity (Comment postToFilterBy) { this.postToFilterBy = postToFilterBy; }
 
