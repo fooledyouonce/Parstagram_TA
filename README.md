@@ -46,7 +46,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src="Untitled.webm" width=250><br>
+[<img src="Untitled.webm" width=250><br>](https://youtu.be/usukWWJXsbg)
 
 GIF created with QuickTime Player.
 
