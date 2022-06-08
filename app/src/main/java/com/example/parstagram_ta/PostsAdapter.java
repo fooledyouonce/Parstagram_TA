@@ -74,20 +74,24 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfile = itemView.findViewById(R.id.ivProfile);
-            tvUsername = itemView.findViewById(R.id.tvUsername);
-            tvLikes = itemView.findViewById(R.id.tvLikes);
-            ivImage = itemView.findViewById(R.id.ivImage);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
-            ibLike = itemView.findViewById(R.id.ibLike);
+            tvUsername = itemView.findViewById(R.id.tvUser);
+            tvLikes = itemView.findViewById(R.id.tvPostLikes);
+            ivImage = itemView.findViewById(R.id.ivPic);
+            tvDescription = itemView.findViewById(R.id.tvCaption);
+            ibLike = itemView.findViewById(R.id.ibPostLikes);
             ibComment = itemView.findViewById(R.id.ibComment);
         }
 
+        @SuppressLint("SetTextI18n")
         public void bind(Post post) {
             ParseFile pfp = post.getUser().getPfp();
-            if (pfp != null) { Glide.with(context).load(pfp.getUrl()).into(ivProfile); }
+            if (pfp != null) { Glide.with(context)
+                    .load(pfp.getUrl())
+                    //.transform(new RoundedCorners(200))
+                    .into(ivProfile); }
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
-            tvLikes.setText(String.valueOf(post.getLikedBy().size()));
+            tvLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
 
             if(post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
                 ibLike.setColorFilter(Color.RED);
