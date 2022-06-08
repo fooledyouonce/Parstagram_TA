@@ -42,6 +42,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     private CommentsAdapter adapter;
     private List<Comment> allComments;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,13 +73,14 @@ public class PostDetailsActivity extends AppCompatActivity {
         if (image != null) {
             Glide.with(this).load(image.getUrl()).into(ivPic);
         }
-        tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));
+        tvPostLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
         tvCaption.setText(post.getDescription());
 
         if (post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) { ibPostLikes.setColorFilter(Color.RED);
         } else { ibPostLikes.setColorFilter(Color.DKGRAY); }
 
         ibPostLikes.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
                 List<String> likedBy = post.getLikedBy();
@@ -93,7 +95,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                     ibPostLikes.setColorFilter(Color.DKGRAY);
                 }
                 post.saveInBackground();
-                tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));
+                tvPostLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
             }
         });
 
