@@ -42,9 +42,9 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
-        btnPfp = findViewById(R.id.btnTakePfp);
-        btnSubmitPfp = findViewById(R.id.btnSubmitPfp);
-        ivPfp = findViewById(R.id.ivPfp);
+        btnPfp = findViewById(R.id.btnCapture);
+        btnSubmitPfp = findViewById(R.id.btnSubmit);
+        ivPfp = findViewById(R.id.ivImage);
 
         btnPfp.setOnClickListener(new View.OnClickListener() {
             @Override

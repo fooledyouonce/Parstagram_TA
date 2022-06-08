@@ -56,9 +56,9 @@ public class ComposeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         etDescription = view.findViewById(R.id.etDescription);
-        btnCapture = view.findViewById(R.id.btnTakePfp);
-        btnSubmit = view.findViewById(R.id.btnSubmitPfp);
-        ivPostImage = view.findViewById(R.id.ivPfp);
+        btnCapture = view.findViewById(R.id.btnCapture);
+        btnSubmit = view.findViewById(R.id.btnSubmit);
+        ivPostImage = view.findViewById(R.id.ivImage);
 
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override

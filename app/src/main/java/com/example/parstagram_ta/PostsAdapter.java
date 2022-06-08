@@ -137,13 +137,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         likedBy.add(ParseUser.getCurrentUser().getObjectId());
                         post.setLikedBy(likedBy);
                         ibLike.setColorFilter(Color.RED);
-                        Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         likedBy.remove(ParseUser.getCurrentUser().getObjectId());
                         post.setLikedBy(likedBy);
                         ibLike.setColorFilter(Color.DKGRAY);
-                        Toast.makeText(context, "Unliked!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Unliked!", Toast.LENGTH_SHORT).show();
                     }
                     post.saveInBackground();
                     tvLikes.setText(String.valueOf(post.getLikedBy().size()));
