@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.parstagram_ta.R;
-import com.example.parstagram_ta.activities.PostDetails;
+import com.example.parstagram_ta.activities.PostDetailsActivity;
 import com.example.parstagram_ta.fragments.ProfileFragment;
 import com.example.parstagram_ta.models.Post;
 import com.parse.ParseFile;
@@ -124,7 +124,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ivImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(context, PostDetails.class);
+                    Intent i = new Intent(context, PostDetailsActivity.class);
                     i.putExtra("post", Parcels.wrap(post));
                     context.startActivity(i);
                 }

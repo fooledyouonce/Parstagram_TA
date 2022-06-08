@@ -31,7 +31,7 @@
             android:name=".activities.UploadActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.PostDetails"
+            android:name=".activities.PostDetailsActivity"
             android:exported="false" />
 
         <provider
