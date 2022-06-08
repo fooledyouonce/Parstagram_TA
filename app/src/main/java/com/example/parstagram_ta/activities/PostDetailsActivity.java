@@ -42,7 +42,6 @@ public class PostDetailsActivity extends AppCompatActivity {
     private CommentsAdapter adapter;
     private List<Comment> allComments;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,13 +86,11 @@ public class PostDetailsActivity extends AppCompatActivity {
                     likedBy.add(ParseUser.getCurrentUser().getObjectId());
                     post.setLikedBy(likedBy);
                     ibPostLikes.setColorFilter(Color.RED);
-                    //Toast.makeText(PostDetails.this, "Liked!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     likedBy.remove(ParseUser.getCurrentUser().getObjectId());
                     post.setLikedBy(likedBy);
                     ibPostLikes.setColorFilter(Color.DKGRAY);
-                    //Toast.makeText(PostDetails.this, "Unliked!", Toast.LENGTH_SHORT).show();
                 }
                 post.saveInBackground();
                 tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));
