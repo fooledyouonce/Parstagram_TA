@@ -41,6 +41,9 @@ public class PostDetailsActivity extends AppCompatActivity {
     private RecyclerView rvComments;
     private CommentsAdapter adapter;
     private List<Comment> allComments;
+    //Comment postToFilterBy;
+
+    //PostDetailsActivity (Comment postToFilterBy) { this.postToFilterBy = postToFilterBy; }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -102,7 +105,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         ibPostComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PostDetailsActivity.this, "Comment button clicked!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(PostDetailsActivity.this, CommentActivity.class);
                 i.putExtra("post_to_comment_on", Parcels.wrap(post));
                 //noinspection deprecation
@@ -127,6 +129,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     private void queryComments() {
         ParseQuery<Comment> query = ParseQuery.getQuery(Comment.class);
         query.include(Comment.KEY_AUTHOR);
+        //query.whereEqualTo(Comment.KEY_POST, postToFilterBy);
         query.setLimit(20);
         query.addDescendingOrder(Comment.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Comment>() {
