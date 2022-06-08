@@ -1,4 +1,4 @@
-package com.example.parstagram_ta;
+package com.example.parstagram_ta.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.parstagram_ta.R;
 import com.example.parstagram_ta.activities.PostDetails;
 import com.example.parstagram_ta.fragments.ProfileFragment;
 import com.example.parstagram_ta.models.Post;
