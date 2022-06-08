@@ -47,6 +47,7 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 https://youtu.be/usukWWJXsbg
+
 Video created with QuickTime Player.
 
 ## Credits
