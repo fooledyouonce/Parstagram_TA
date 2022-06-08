@@ -56,6 +56,10 @@ public class CommentActivity extends AppCompatActivity {
                         Log.i(TAG, "Saved post");
 //                        Intent i = new Intent(CommentActivity.this, PostDetailsActivity.class);
 //                        CommentActivity.this.startActivity(i);
+
+                        Intent i = new Intent();
+                        i.putExtra("new_comment", comment);
+                        setResult(RESULT_OK, i);
                         finish();
                     }
                 });

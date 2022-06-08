@@ -1,10 +1,12 @@
 package com.example.parstagram_ta.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.parstagram_ta.adapters.CommentsAdapter;
@@ -38,6 +41,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     private TextView tvCaption;
     private TextView tvPostLikes;
     private ImageButton ibPostLikes;
+    private ImageButton ibPostComments;
     private RecyclerView rvComments;
     private CommentsAdapter adapter;
     private List<Comment> allComments;
@@ -52,6 +56,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         ivPic = findViewById(R.id.ivPic);
         tvPostLikes = findViewById(R.id.tvPostLikes);
         ibPostLikes = findViewById(R.id.ibPostLikes);
+        ibPostComments = findViewById(R.id.ibPostComments);
         tvCaption = findViewById(R.id.tvCaption);
 
         rvComments = findViewById(R.id.rvComments);
@@ -96,6 +101,28 @@ public class PostDetailsActivity extends AppCompatActivity {
                 tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));
             }
         });
+
+        ibPostComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(PostDetailsActivity.this, "Comment button clicked!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PostDetailsActivity.this, CommentActivity.class);
+                i.putExtra("post_to_comment_on", Parcels.wrap(post));
+                PostDetailsActivity.this.startActivityForResult(i, 534);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK) {
+            //subclass of Parcelable!
+            Comment newComment = data.getParcelableExtra("new_comment");
+            allComments.add(0, newComment);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void queryComments() {
