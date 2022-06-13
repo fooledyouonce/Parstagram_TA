@@ -71,7 +71,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         if (image != null) {
             Glide.with(this).load(image.getUrl()).into(ivPic);
         }
-        tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));
+        tvPostLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
         tvCaption.setText(post.getDescription());
 
         if (post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) { ibPostLikes.setColorFilter(Color.RED);
@@ -94,14 +94,13 @@ public class PostDetailsActivity extends AppCompatActivity {
                     ibPostLikes.setColorFilter(Color.DKGRAY);
                 }
                 post.saveInBackground();
-                tvPostLikes.setText(String.valueOf(post.getLikedBy().size()));
+                tvPostLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
             }
         });
 
         ibPostComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PostDetailsActivity.this, "Comment button clicked!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(PostDetailsActivity.this, CommentActivity.class);
                 i.putExtra("post_to_comment_on", Parcels.wrap(post));
                 //noinspection deprecation

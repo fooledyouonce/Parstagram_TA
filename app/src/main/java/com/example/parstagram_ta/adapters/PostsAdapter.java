@@ -89,6 +89,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (pfp != null) { Glide.with(context)
                     .load(pfp.getUrl())
                     .into(ivProfile); }
+            //else { Glide.with(context)
+              //      .load(ivProfile)
+                //    .into(ivProfile);
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
             tvLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
