@@ -41,6 +41,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     private RecyclerView rvComments;
     private CommentsAdapter adapter;
     private List<Comment> allComments;
+    private Post post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +64,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvComments.setLayoutManager(linearLayoutManager);
 
-        queryComments();
-
-        Post post = Parcels.unwrap(getIntent().getParcelableExtra("post"));
+        post = Parcels.unwrap(getIntent().getParcelableExtra("post"));
         tvUser.setText(post.getUser().getUsername());
         tvCreatedAt.setText(post.getCreatedAt().toString());
         ParseFile image = post.getImage();
@@ -77,6 +76,8 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         if (post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) { ibPostLikes.setColorFilter(Color.RED);
         } else { ibPostLikes.setColorFilter(Color.DKGRAY); }
+
+        queryComments();
 
         ibPostLikes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +125,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     private void queryComments() {
         ParseQuery<Comment> query = ParseQuery.getQuery(Comment.class);
+        query.whereEqualTo(Comment.KEY_POST, post);
         query.include(Comment.KEY_AUTHOR);
         query.setLimit(20);
         query.addDescendingOrder(Comment.KEY_CREATED_AT);

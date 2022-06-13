@@ -37,15 +37,15 @@ public class ProfileFragment extends PostsFragment {
         rvPosts.setAdapter(adapter);
 
         int numberOfColumns = 3;
-        LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
 
-        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+        scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 queryPosts(allPosts.size());
             }
         };
-        rvPosts.setLayoutManager(linearLayoutManager);
+        rvPosts.setLayoutManager(gridLayoutManager);
         rvPosts.addOnScrollListener(scrollListener);
 
         queryPosts(0);
