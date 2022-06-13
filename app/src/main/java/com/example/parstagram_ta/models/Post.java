@@ -40,6 +40,12 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 
+    public String likeCountDisplayText() {
+        String likesText = String.valueOf(getLikedBy().size());
+        likesText += getLikedBy().size() == 1 ? " like" : " likes";
+        return likesText;
+    }
+
     public List<String> getLikedBy() {
         List<String> likedBy = getList(KEY_LIKED_BY);
         if(likedBy == null) {

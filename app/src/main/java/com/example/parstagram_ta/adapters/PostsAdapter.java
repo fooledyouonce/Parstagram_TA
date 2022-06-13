@@ -10,11 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.parstagram_ta.R;
@@ -94,7 +93,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 //    .into(ivProfile);
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
-            tvLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
+            tvLikes.setText(post.likeCountDisplayText());
 
             if(post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
                 ibLike.setColorFilter(Color.RED);
@@ -146,7 +145,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         ibLike.setColorFilter(Color.DKGRAY);
                     }
                     post.saveInBackground();
-                    tvLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
+                    tvLikes.setText(post.likeCountDisplayText());
                 }
             });
 

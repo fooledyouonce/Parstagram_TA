@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.parstagram_ta.adapters.CommentsAdapter;
 import com.example.parstagram_ta.models.Comment;
@@ -71,7 +71,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         if (image != null) {
             Glide.with(this).load(image.getUrl()).into(ivPic);
         }
-        tvPostLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
+        tvPostLikes.setText(post.likeCountDisplayText());
         tvCaption.setText(post.getDescription());
 
         if (post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) { ibPostLikes.setColorFilter(Color.RED);
@@ -94,7 +94,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                     ibPostLikes.setColorFilter(Color.DKGRAY);
                 }
                 post.saveInBackground();
-                tvPostLikes.setText(String.valueOf(post.getLikedBy().size()) + " likes");
+                tvPostLikes.setText(post.likeCountDisplayText());
             }
         });
 
