@@ -65,12 +65,11 @@ public class PostDetailsActivity extends AppCompatActivity {
         rvComments.setLayoutManager(linearLayoutManager);
 
         post = Parcels.unwrap(getIntent().getParcelableExtra("post"));
+
         tvUser.setText(post.getUser().getUsername());
         tvCreatedAt.setText(post.getCreatedAt().toString());
         ParseFile image = post.getImage();
-        if (image != null) {
-            Glide.with(this).load(image.getUrl()).into(ivPic);
-        }
+        if (image != null) { Glide.with(this).load(image.getUrl()).into(ivPic); }
         tvPostLikes.setText(post.likeCountDisplayText());
         tvCaption.setText(post.getDescription());
 

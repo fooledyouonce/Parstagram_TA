@@ -121,7 +121,7 @@ public class UploadActivity extends AppCompatActivity {
                     Log.e(TAG, "Error while saving");
                     Toast.makeText(UploadActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
                 }
-                Log.i(TAG, "Saved post");
+                Log.i(TAG, "Saved PFP");
                 ivPfp.setImageResource(0);
             }
         });

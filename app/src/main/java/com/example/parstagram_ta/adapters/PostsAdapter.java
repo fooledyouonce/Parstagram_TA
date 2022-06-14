@@ -39,8 +39,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       // FragmentManager fm = getSupportFragmentManager();
-       // Fragment fragInstance = fm.findFragmentById(R.id.fragment_post);
         View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
         return new ViewHolder(view);
     }
@@ -88,14 +86,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (pfp != null) { Glide.with(context)
                     .load(pfp.getUrl())
                     .into(ivProfile); }
-            //else { Glide.with(context)
-              //      .load(ivProfile)
-                //    .into(ivProfile);
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
             tvLikes.setText(post.likeCountDisplayText());
 
-            if(post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
+            if (post.getLikedBy().contains(ParseUser.getCurrentUser().getObjectId())) {
                 ibLike.setColorFilter(Color.RED);
             } else { ibLike.setColorFilter(Color.DKGRAY); }
 
@@ -134,7 +129,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 @Override
                 public void onClick(View view) {
                     List<String> likedBy = post.getLikedBy();
-                    if(!likedBy.contains(ParseUser.getCurrentUser().getObjectId())) {
+                    if (!likedBy.contains(ParseUser.getCurrentUser().getObjectId())) {
                         likedBy.add(ParseUser.getCurrentUser().getObjectId());
                         post.setLikedBy(likedBy);
                         ibLike.setColorFilter(Color.RED);

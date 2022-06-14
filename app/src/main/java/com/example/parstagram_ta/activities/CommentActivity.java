@@ -20,7 +20,6 @@ public class CommentActivity extends AppCompatActivity {
     private static final String TAG = "CommentActivity";
     private EditText etComment;
     private Button btnComment;
-
     Post post;
 
     @Override
@@ -45,9 +44,9 @@ public class CommentActivity extends AppCompatActivity {
                     public void done(ParseException e) {
                         if (e != null) {
                             Log.e(TAG, "Error while saving");
-                            Toast.makeText(CommentActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CommentActivity.this, "Error while commenting!", Toast.LENGTH_SHORT).show();
                         }
-                        Log.i(TAG, "Saved post");
+                        Log.i(TAG, "Saved comment");
 
                         Intent i = new Intent();
                         i.putExtra("new_comment", comment);
