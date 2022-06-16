@@ -3,14 +3,20 @@ package com.example.parstagram_ta.fragments;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.parstagram_ta.EndlessRecyclerViewScrollListener;
+import com.example.parstagram_ta.adapters.ProfileAdapter;
 import com.example.parstagram_ta.models.Post;
 import com.example.parstagram_ta.adapters.PostsAdapter;
 import com.example.parstagram_ta.R;
@@ -21,20 +27,36 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileFragment extends PostsFragment {
+public class ProfileFragment extends Fragment {
+    public static final String TAG = "ProfileFragment";
     ParseUser userToFilterBy;
+    RecyclerView rvProfile;
+    ProfileAdapter adapter;
+    List<Post> allPosts;
+    SwipeRefreshLayout swipeContainer;
+    EndlessRecyclerViewScrollListener scrollListener;
 
     public ProfileFragment(ParseUser userToFilterBy) {
         this.userToFilterBy = userToFilterBy;
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_profile, container, false);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvPosts = view.findViewById(R.id.rvPosts);
+        rvProfile = view.findViewById(R.id.rvProfile);
         allPosts = new ArrayList<>();
-        adapter = new PostsAdapter(getContext(), allPosts);
-        rvPosts.setAdapter(adapter);
+        adapter = new ProfileAdapter(getContext(), allPosts);
+        rvProfile.setAdapter(adapter);
+
+        TextView tvCurrentUser;
+        tvCurrentUser = view.findViewById(R.id.tvCurrentUser);
+        //tvCurrentUser.setText(post.getUser().getUsername());
 
         int numberOfColumns = 3;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
@@ -45,8 +67,8 @@ public class ProfileFragment extends PostsFragment {
                 queryPosts(allPosts.size());
             }
         };
-        rvPosts.setLayoutManager(gridLayoutManager);
-        rvPosts.addOnScrollListener(scrollListener);
+        rvProfile.setLayoutManager(gridLayoutManager);
+        rvProfile.addOnScrollListener(scrollListener);
 
         queryPosts(0);
 
@@ -67,7 +89,6 @@ public class ProfileFragment extends PostsFragment {
         });
     }
 
-    @Override
     protected void queryPosts(int skipAmount) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);

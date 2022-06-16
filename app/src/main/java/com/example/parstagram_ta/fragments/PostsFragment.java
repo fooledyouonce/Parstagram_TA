@@ -89,7 +89,7 @@ public class PostsFragment extends Fragment {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Unable to retrieve posts");
+                    Log.e(TAG, "Unable to retrieve posts", e);
                     return;
                 }
                 for (Post post : posts) { Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername()); }

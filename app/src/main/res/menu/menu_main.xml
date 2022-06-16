@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/upload"
-        android:icon="@drawable/instagram_user_filled_24"
+        android:icon="@drawable/ic_outline_person_add_alt_1_24"
         android:title="uploadPFP"
         app:showAsAction="always" />
     <item
         android:id="@+id/Logout"
-        android:icon="@drawable/ic_baseline_login_24"
+        android:icon="@drawable/ic_outline_login_24"
         android:title="Logout"
         app:showAsAction="always" />
 </menu>
